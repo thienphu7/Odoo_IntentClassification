@@ -1,0 +1,11 @@
+<odoo>
+  <menuitem id="ml_demo_menu_root" name="ML Demo" sequence="10"/>
+
+  <record id="action_ml_demo_page" model="ir.actions.act_url">
+    <field name="name">ML Classifier</field>
+    <field name="url">/ml_demo/ml_demo_page</field>
+    <field name="target">self</field>
+  </record>
+
+  <menuitem id="ml_demo_submenu" name="Predict" parent="ml_demo_menu_root" action="action_ml_demo_page"/>
+</odoo>

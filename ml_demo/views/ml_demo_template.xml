@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <template id="ml_demo_page_v2" name="ML Demo Page">
+    <t t-name="ml_demo.ml_demo_page_v2">
+      <t t-call="web.layout">
+        <div class="container mt32 mb32">
+          <h2>Question Intent Classifier</h2>
+          <input type="text" id="question_input" placeholder="Enter your question" style="width:50%"/>
+          <button type="button" onclick="classifyIntent()">Predict</button>
+          <div id="result" class="mt16 text-info"></div>
+        </div>
+        <script type="text/javascript">
+          function classifyIntent() {
+            const question = document.getElementById("question_input").value;
+            fetch("/predict_question_intent", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ text: question }),
+            })
+            .then(res => res.json())
+            .then(data => {
+              document.getElementById("result").innerText = "Predicted Intent: " + data.intent;
+            });
+          }
+        </script>
+      </t>
+    </t>
+  </template>
+</odoo>
